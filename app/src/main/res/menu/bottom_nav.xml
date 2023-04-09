@@ -5,16 +5,12 @@
         android:id="@+id/home"
         android:icon="@drawable/home_icon"/>
 
-    <item android:title="Food"
+    <item android:title="Profile"
         android:id="@+id/food"
-        android:icon="@drawable/food_icon"/>
-
-    <item android:title="My basket"
-        android:id="@+id/cart"
-        android:icon="@drawable/basket_icon"/>
-
-    <item android:title="Lounge"
-        android:id="@+id/blog"
-        android:icon="@drawable/blog_icon"/>
         />
+
+    <item android:title="Favourites"
+        android:id="@+id/cart"
+        android:icon="@drawable/ic_baseline_favorite_24"/>
+
 </menu>

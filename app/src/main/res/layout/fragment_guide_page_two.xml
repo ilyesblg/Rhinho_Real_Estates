@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/za3ka"
-    tools:context=".ui.main.fragments.GuidePageTwoFragment">
+    android:background="@drawable/abc"
+    tools:context="devsec.app.rhinhorealestates.ui.main.fragments.GuidePageTwoFragment">
 
     <TextView
         android:id="@+id/Title"

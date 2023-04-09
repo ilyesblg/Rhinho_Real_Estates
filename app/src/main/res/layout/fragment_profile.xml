@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragments.ProfileFragment">
+    tools:context="devsec.app.rhinhorealestates.ui.main.fragments.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_marginTop="-30dp"
-            android:src="@drawable/android_icon"
+            android:src="@drawable/asset_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileToolbar" />

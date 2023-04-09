@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.view.GuideActivity">
+    tools:context="devsec.app.rhinhorealestates.ui.main.view.GuideActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,14 +23,14 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/za3ka"
+        android:background="@drawable/abc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainer"
-            android:name="devsec.app.easykitchen.ui.main.fragments.GuidePageOneFragment"
+            android:name="devsec.app.rhinhorealestates.ui.main.fragments.GuidePageOneFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

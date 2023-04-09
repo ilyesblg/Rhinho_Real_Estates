@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.view.EditProfileActivity">
+    tools:context="devsec.app.rhinhorealestates.ui.main.view.EditProfileActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/editProfileToolbar"
@@ -25,7 +25,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
-        android:src="@drawable/android_icon"
+        android:src="@drawable/asset_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

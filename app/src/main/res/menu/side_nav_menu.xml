@@ -2,12 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="@layout/nav_header">
-    <item
-
-        android:id="@+id/nav_recettes"
-        android:icon="@drawable/ic_baseline_menu_book_24"
-        android:title="@string/mes_recettes" />
-
 
     <item android:title="@string/store_preferences">
         <menu>
@@ -30,15 +24,7 @@
                 android:icon="@drawable/ic_baseline_web_24"
                 android:title="@string/visit_our_website" />
 
-                <item
-                android:id="@+id/nav_discussion"
-                android:icon="@drawable/ic_baseline_message_24"
-                android:title="@string/dev_newsletter" />
-
-                <item
-                android:id="@+id/nav_gitRepo"
-                android:icon="@drawable/ic_baseline_newspaper_24"
-                android:title="@string/read_documentation" />
+                />
             </menu>
         </item>
 
