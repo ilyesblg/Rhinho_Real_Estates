@@ -66,7 +66,7 @@ interface RestApiService {
 class RetrofitInstance {
     companion object {
 
-        const val BASE_URL: String = "http://192.168.58.1:9090/api/"
+        const val BASE_URL: String = "http://192.168.1.13:9090/api/"
      // const val BASE_URL: String = "http://192.168.0.11:9090/api/"
 
 
