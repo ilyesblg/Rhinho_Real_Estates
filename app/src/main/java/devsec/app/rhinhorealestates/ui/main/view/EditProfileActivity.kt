@@ -32,7 +32,7 @@ class EditProfileActivity : AppCompatActivity() {
         val email = findViewById<TextView>(R.id.editProfileEmail)
         val phone = findViewById<TextView>(R.id.editProfilePhone)
         val password = findViewById<TextView>(R.id.editProfilePassword)
-
+        val adress = findViewById<TextView>(R.id.editProfileAdress)
         val updateButton = findViewById<Button>(R.id.updateProfileButton)
 
         user = sessionPref.getUserPref()
@@ -41,6 +41,7 @@ class EditProfileActivity : AppCompatActivity() {
         email.text = user.get(SessionPref.USER_EMAIL)
         password.text = user.get(SessionPref.USER_PASSWORD)
         password.visibility = TextView.INVISIBLE
+        adress.text = user.get(SessionPref.USER_ADDRESS)
         phone.text = user.get(SessionPref.USER_PHONE)
 
         val toolbar = findViewById<Toolbar>(R.id.editProfileToolbar)
@@ -54,6 +55,7 @@ class EditProfileActivity : AppCompatActivity() {
                 username = username.text.toString(),
                 email = email.text.toString(),
                 password = password.text.toString(),
+                adress = adress.text.toString(),
                 phone = phone.text.toString()
             )
             val call = retIn.updateUser(
@@ -64,7 +66,7 @@ class EditProfileActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@EditProfileActivity, "Profile Updated", Toast.LENGTH_SHORT).show()
-                        sessionPref.setUserPref(username.text.toString(), email.text.toString(), password.text.toString() ,phone.text.toString())
+                        sessionPref.setUserPref(username.text.toString(), email.text.toString(), password.text.toString() , adress.text.toString(), phone.text.toString())
                         val intent = Intent(this@EditProfileActivity, MainMenuActivity::class.java)
                         startActivity(intent)
                         finish()

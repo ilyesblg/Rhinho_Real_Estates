@@ -11,8 +11,10 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import devsec.app.RhinhoRealEstates.R
+import devsec.app.RhinhoRealEstates.databinding.ActivityLoginBinding
 import devsec.app.rhinhorealestates.api.RestApiService
 import devsec.app.rhinhorealestates.api.RetrofitInstance
+import devsec.app.rhinhorealestates.data.api.UserRequest
 import devsec.app.rhinhorealestates.data.models.User
 import devsec.app.rhinhorealestates.utils.services.LoadingDialog
 import devsec.app.rhinhorealestates.utils.session.SessionPref
@@ -30,10 +32,11 @@ class LoginActivity : AppCompatActivity() {
     lateinit var usernameEditText: EditText
     lateinit var passwordEditText: EditText
     lateinit var loadingDialog: LoadingDialog
-
+    private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         loadingDialog = LoadingDialog(this)
         //our login session manager
         sessionPref = SessionPref(this)
@@ -49,17 +52,22 @@ class LoginActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.passwordEditText)
 
         val registerBtn = findViewById<TextView>(R.id.RegisterTV)
-
+        val forgetBtn = findViewById<TextView>(R.id.Forget)
 
         registerBtn.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
+        forgetBtn.setOnClickListener {
+            val intent = Intent(this, ForgetPasswordActivity::class.java)
+            startActivity(intent)
+        }
+
         val loginBtn = findViewById<Button>(R.id.LoginBtn)
         loginBtn.setOnClickListener() {
             if (validateLogin(usernameEditText, passwordEditText,passwordLayout)) {
-                login(usernameEditText.text.trim().toString(), passwordEditText.text.trim().toString())
+                login()
 
             }else{
                 val toast = Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT)
@@ -98,12 +106,14 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
 
-    private fun login(username: String, password: String) {
+    private fun login() {
         loadingDialog.startLoadingDialog()
+        val username = binding.loginEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
+        val userRequest = UserRequest(username,password)
             val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-            val signInInfo = User(username, password)
 
-            retIn.loginUser(signInInfo).enqueue(object : Callback<ResponseBody> {
+            retIn.loginUser(userRequest).enqueue(object : Callback<ResponseBody> {
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     loadingDialog.dismissDialog()
@@ -126,8 +136,9 @@ class LoginActivity : AppCompatActivity() {
                         val id_user = user.get("_id").asString
                         val username_user = user.get("username").asString
                         val email_user = user.get("email").asString
+                        val adress_user = user.get("adress").asString
                         val phone_user = user.get("phone").asString
-                        sessionPref.createRegisterSession(id_user, username_user, email_user, "",phone_user)
+                        sessionPref.createRegisterSession(id_user, username_user, email_user, "",adress_user,phone_user)
                         Toast.makeText(this@LoginActivity, "Welcome!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainMenuActivity::class.java)
                         startActivity(intent)

@@ -75,6 +75,24 @@
             android:name="devsec.app.rhinhorealestates.ui.main.view.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.RhinhoRealStatesAB" />
+        <activity
+            android:name="devsec.app.rhinhorealestates.ui.main.view.CodeActivity"
+            android:exported="false"
+            android:label="@string/title_activity_code"
+            android:theme="@style/Theme.RhinhoRealStates.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="devsec.app.rhinhorealestates.ui.main.view.ForgetPasswordActivity"
+            android:exported="false"
+            android:label="@string/title_activity_forget_password"
+            android:theme="@style/Theme.RhinhoRealStates.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
     </application>
 
 </manifest>
