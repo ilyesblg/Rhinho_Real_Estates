@@ -24,20 +24,11 @@
         android:theme="@style/Theme.RhinhoRealStates"
         tools:targetApi="31">
         <activity
-            android:name=".ProfileActivity"
-            android:exported="false"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.RhinhoRealStates.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".EditProfileActivity"
+            android:name="devsec.app.rhinhorealestates.ui.main.view.EditProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.RhinhoRealStatesAB" />
         <activity
-            android:name=".MainMenuActivity"
+            android:name="devsec.app.rhinhorealestates.ui.main.view.MainMenuActivity"
             android:exported="true"
             android:theme="@style/Theme.RhinhoRealStatesAB">
             <meta-data
@@ -45,7 +36,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name="devsec.app.rhinhorealestates.ui.main.view.LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.RhinhoRealStatesAB">
             <meta-data
@@ -53,7 +44,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="devsec.app.rhinhorealestates.ui.main.view.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.RhinhoRealStatesAB">
             <intent-filter>
@@ -67,7 +58,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".GuideActivity"
+            android:name="devsec.app.rhinhorealestates.ui.main.view.GuideActivity"
             android:exported="false"
             android:theme="@style/Theme.RhinhoRealStatesAB">
             <meta-data
@@ -75,11 +66,11 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name="devsec.app.rhinhorealestates.ui.main.view.RegisterActivity"
             android:exported="false"
             android:theme="@style/Theme.RhinhoRealStatesAB" />
         <activity
-            android:name=".CodeActivity"
+            android:name="devsec.app.rhinhorealestates.ui.main.view.CodeActivity"
             android:exported="false"
             android:label="@string/title_activity_code"
             android:theme="@style/Theme.RhinhoRealStates.NoActionBar">
@@ -88,7 +79,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ForgetPasswordActivity"
+            android:name="devsec.app.rhinhorealestates.ui.main.view.ForgetPasswordActivity"
             android:exported="false"
             android:label="@string/title_activity_forget_password"
             android:theme="@style/Theme.RhinhoRealStates.NoActionBar">
