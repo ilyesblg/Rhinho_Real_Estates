@@ -5,7 +5,7 @@
         android:id="@+id/home"
         android:icon="@drawable/home_icon"/>
 
-    <item android:title="Profile"
+    <item android:title="Estate"
         android:id="@+id/real_estate"
         android:icon="@drawable/baseline_real_estate_agent_24"/>
 
