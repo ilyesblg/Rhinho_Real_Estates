@@ -81,8 +81,8 @@ class MainMenuActivity : AppCompatActivity() {
             when (menuItem.itemId) {
 
 
-                R.id.profile -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
+                R.id.nav_edit_profile -> {
+                    val intent = Intent(this, EditProfileActivity::class.java)
                     startActivity(intent)
                     drawerLayout.closeDrawer(navigationView)
                 }
