@@ -1,4 +1,4 @@
-package devsec.app.easykitchen.ui.main.fragments
+package devsec.app.rhinhorealestates.ui.main.fragments
 
 import android.content.Intent
 import android.graphics.Color
@@ -30,12 +30,6 @@ import java.time.LocalTime
 
 class HomeFragment : Fragment() {
     //************* Recommended food *************//
-
-
-
-
-
-
 
 
     private lateinit var username: TextView

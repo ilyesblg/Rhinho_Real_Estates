@@ -19,7 +19,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import devsec.app.RhinhoRealEstates.R
 import devsec.app.RhinhoRealEstates.databinding.ActivityMainMenuBinding
-import devsec.app.easykitchen.ui.main.fragments.HomeFragment
+import devsec.app.rhinhorealestates.ui.main.fragments.HomeFragment
 import devsec.app.rhinhorealestates.api.RestApiService
 import devsec.app.rhinhorealestates.api.RetrofitInstance
 import devsec.app.rhinhorealestates.utils.services.ConnectivityObserver
@@ -81,12 +81,10 @@ class MainMenuActivity : AppCompatActivity() {
             when (menuItem.itemId) {
 
 
-                R.id.nav_rating -> {
-                    Toast.makeText(this, "Comming soon!", Toast.LENGTH_SHORT).show()
-//                    val url = ""
-//                    val i = Intent(Intent.ACTION_VIEW)
-//                    i.data = Uri.parse(url)
-//                    startActivity(i)
+                R.id.profile -> {
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+                    drawerLayout.closeDrawer(navigationView)
                 }
                 R.id.nav_feedback -> {
                     Toast.makeText(this, "Comming soon!", Toast.LENGTH_SHORT).show()
