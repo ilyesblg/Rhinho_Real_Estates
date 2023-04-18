@@ -51,7 +51,6 @@
     <string name="upvote_number">50</string>
 
 
-
     <string name="add">ADD</string>
     <string name="remove">REMOVE</string>
 
@@ -60,7 +59,6 @@
 
 
     <string name="profileimage" translatable="false">profileImage</string>
-
 
 
     <string name="rate_our_app">Rate Our App</string>
@@ -85,6 +83,12 @@
 
 
     <string name="hello">"Hello, "</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="Profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="favourites">Favourites</string>
+    <string name="usernamevalue">username</string>
+    <string name="emailvalue">email</string>
 
 
 </resources>

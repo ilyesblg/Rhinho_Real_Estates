@@ -15,6 +15,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import devsec.app.RhinhoRealEstates.R
@@ -22,6 +23,7 @@ import devsec.app.RhinhoRealEstates.databinding.ActivityMainMenuBinding
 import devsec.app.rhinhorealestates.ui.main.fragments.HomeFragment
 import devsec.app.rhinhorealestates.api.RestApiService
 import devsec.app.rhinhorealestates.api.RetrofitInstance
+import devsec.app.rhinhorealestates.ui.main.fragments.ProfileFragment
 import devsec.app.rhinhorealestates.utils.services.ConnectivityObserver
 import devsec.app.rhinhorealestates.utils.services.LoadingDialog
 import devsec.app.rhinhorealestates.utils.services.NetworkConnectivityObserver
@@ -81,10 +83,12 @@ class MainMenuActivity : AppCompatActivity() {
             when (menuItem.itemId) {
 
 
-                R.id.nav_edit_profile -> {
-                    val intent = Intent(this, EditProfileActivity::class.java)
-                    startActivity(intent)
-                    drawerLayout.closeDrawer(navigationView)
+                R.id.nav_rating -> {
+                    Toast.makeText(this, "Comming soon!", Toast.LENGTH_SHORT).show()
+//                    val url = ""
+//                    val i = Intent(Intent.ACTION_VIEW)
+//                    i.data = Uri.parse(url)
+//                    startActivity(i)
                 }
                 R.id.nav_feedback -> {
                     Toast.makeText(this, "Comming soon!", Toast.LENGTH_SHORT).show()
@@ -130,6 +134,28 @@ class MainMenuActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.setOnItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home -> {
+                    // Handle click on Home menu item
+                    true
+                }
+                R.id.profile -> {
+                    val profileFragment = ProfileFragment()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragments_container, profileFragment)
+                        .commit()
+                    true
+                }
+                R.id.cart -> {
+                    // Handle click on Cart menu item
+                    true
+                }
+                else -> false
+            }
         }
         session = SessionPref(this.applicationContext)
 
