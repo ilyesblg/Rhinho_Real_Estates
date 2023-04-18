@@ -103,6 +103,14 @@ class MainMenuActivity : AppCompatActivity() {
                     i.data = Uri.parse(url)
                     startActivity(i)
                 }
+                R.id.profilemenu -> {
+                    val profileFragment = ProfileFragment()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragments_container, profileFragment)
+                        .addToBackStack(null)
+                        .commit()
+                    drawerLayout.closeDrawer(navigationView)
+                }
                 R.id.nav_edit_profile -> {
                     val intent = Intent(this, EditProfileActivity::class.java)
                     startActivity(intent)
@@ -143,11 +151,11 @@ class MainMenuActivity : AppCompatActivity() {
                     // Handle click on Home menu item
                     true
                 }
-                R.id.profile -> {
-                    val profileFragment = ProfileFragment()
+                R.id.estate -> {
+                 /*   val profileFragment = ProfileFragment()
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragments_container, profileFragment)
-                        .commit()
+                        .commit()*/
                     true
                 }
                 R.id.cart -> {

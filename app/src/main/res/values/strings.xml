@@ -89,6 +89,8 @@
     <string name="favourites">Favourites</string>
     <string name="usernamevalue">username</string>
     <string name="emailvalue">email</string>
+    <string name="Estate">Estate</string>
+    <string name="my_profile">My Profile</string>
 
 
 </resources>

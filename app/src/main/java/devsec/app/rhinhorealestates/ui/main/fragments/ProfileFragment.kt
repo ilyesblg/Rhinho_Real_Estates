@@ -45,7 +45,6 @@ class ProfileFragment : Fragment() {
         val username = view.findViewById<TextView>(R.id.profileUsernameINPT)
         val email = view.findViewById<TextView>(R.id.profileEmailINPT)
         val phone = view.findViewById<TextView>(R.id.profilePhoneINPT)
-        val deleteButton = view.findViewById<TextView>(R.id.deleteAccountBTN)
         session.checkLogin()
 
         var user : HashMap<String, String> = session.getUserPref()
@@ -53,55 +52,12 @@ class ProfileFragment : Fragment() {
         email.text = user.get(SessionPref.USER_EMAIL)
         phone.text = user.get(SessionPref.USER_PHONE)
 
+        val toolbar = view.findViewById<Toolbar>(R.id.profileToolbar)
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
 
-         val toolbar = view.findViewById<Toolbar>(R.id.profileToolbar)
-         toolbar.menu.findItem(R.id.editProfile).setOnMenuItemClickListener {
-            val intent = Intent(context, EditProfileActivity::class.java)
-            startActivity(intent)
-            true
-        }
-        toolbar.menu.findItem(R.id.logoutProfile).setOnMenuItemClickListener {
-            val intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
-            this.requireActivity().finish()
-            true
+        toolbar.setNavigationOnClickListener {
+            activity?.onBackPressed()
         }
 
-        toolbar.menu.findItem(R.id.logoutProfile).setOnMenuItemClickListener {
-            session.logoutUser()
-            true
-        }
-
-        deleteButton.setOnClickListener {
-            val builder = AlertDialog.Builder(activity)
-            builder.setTitle("Delete Account")
-            builder.setMessage("Are you sure you want to delete your account?")
-            builder.setPositiveButton("Yes") { dialog, which ->
-                loadingDialog.startLoadingDialog()
-                val apiService = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
-                val call = apiService.deleteUser(session.getUserPref().get(SessionPref.USER_ID).toString())
-                call.enqueue(object : Callback<ResponseBody> {
-
-                    override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        if (response.isSuccessful) {
-                            loadingDialog.dismissDialog()
-                            Toast.makeText(activity?.applicationContext, "Account deleted", Toast.LENGTH_SHORT).show()
-                            session.logoutUser()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                        loadingDialog.dismissDialog()
-                        Toast.makeText(activity?.applicationContext, "Error deleting account", Toast.LENGTH_SHORT).show()
-                    }
-                })
-                Toast.makeText(activity?.applicationContext, "Account deleted", Toast.LENGTH_SHORT).show()
-            }
-            builder.setNegativeButton("No") { dialog, which ->
-                Toast.makeText(activity?.applicationContext, "Account not deleted", Toast.LENGTH_SHORT).show()
-            }
-            builder.show()
-
-        }
     }
 }

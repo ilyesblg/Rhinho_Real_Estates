@@ -31,7 +31,10 @@
     <item android:title="@string/user_preferences">
         <menu>
 
-
+            <item
+                android:id="@+id/profilemenu"
+                android:title="@string/my_profile"
+                android:icon="@drawable/user" />
             <item
                 android:id="@+id/nav_edit_profile"
                 android:title="@string/edit_profile"
