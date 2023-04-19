@@ -24,6 +24,15 @@
         android:theme="@style/Theme.RhinhoRealStates"
         tools:targetApi="31">
         <activity
+            android:name="devsec.app.rhinhorealestates.ui.main.view.ChangePassActivity"
+            android:exported="false"
+            android:label="@string/title_activity_change_pass"
+            android:theme="@style/Theme.RhinhoRealStates.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="devsec.app.rhinhorealestates.ui.main.view.EditProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.RhinhoRealStatesAB" />

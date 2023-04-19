@@ -45,12 +45,14 @@ class ProfileFragment : Fragment() {
         val username = view.findViewById<TextView>(R.id.profileUsernameINPT)
         val email = view.findViewById<TextView>(R.id.profileEmailINPT)
         val phone = view.findViewById<TextView>(R.id.profilePhoneINPT)
+        val adress = view.findViewById<TextView>(R.id.AdressProf)
         session.checkLogin()
 
         var user : HashMap<String, String> = session.getUserPref()
         username.text = user.get(SessionPref.USER_NAME)
         email.text = user.get(SessionPref.USER_EMAIL)
         phone.text = user.get(SessionPref.USER_PHONE)
+        adress.text = user.get(SessionPref.USER_ADDRESS)
 
         val toolbar = view.findViewById<Toolbar>(R.id.profileToolbar)
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)

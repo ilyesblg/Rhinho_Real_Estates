@@ -91,6 +91,8 @@
     <string name="emailvalue">email</string>
     <string name="Estate">Estate</string>
     <string name="my_profile">My Profile</string>
+    <string name="title_activity_change_pass">ChangePassActivity</string>
+    <string name="valider">Valider</string>
 
 
 </resources>

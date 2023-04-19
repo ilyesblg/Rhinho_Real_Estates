@@ -13,6 +13,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 import devsec.app.rhinhorealestates.data.api.UserRequest
+import devsec.app.rhinhorealestates.data.api.changepass
+
 interface RestApiService {
 
 
@@ -32,10 +34,13 @@ interface RestApiService {
     fun getUsers(): Call<List<User>>
 
     @POST("users/resetpassword")
-    fun verifcode(@Body code: CodeRequest): Call<Unit>
+    fun verifcode(@Body code: CodeRequest): Call<Unit>   //verification code
 
     @POST("users/resetpwd")
-    fun generatecode(@Body email: EmailRequest): Call<Unit>
+    fun generatecode(@Body email: EmailRequest): Call<Unit>       // envoyer code
+
+    @POST("users/changepwd")
+    fun changepass(@Body password: changepass): Call<Unit>       // changer pass
 
     @GET("users/{id}")
     fun getUser(@Path("id") id: String): Call<User>
@@ -48,9 +53,6 @@ interface RestApiService {
     fun deleteUser(@Path("id") id: String): Call<ResponseBody>
 
 
-
-
-
     @Multipart
     @POST("uploadfile")
     fun postImage(
@@ -58,16 +60,11 @@ interface RestApiService {
     ): Call<ResponseBody>
 
 
-
-
     @Multipart
     @POST("uploadfile")
     fun uploadImage(
         @Part myFile: MultipartBody.Part
     ): Call<ResponseBody>
-
-
-
 
 }
 

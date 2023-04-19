@@ -24,8 +24,6 @@ class CodeActivity : AppCompatActivity() {
     lateinit var loadingDialog: LoadingDialog
     lateinit var sendcodebtn : Button
     lateinit var eCode: EditText
-    lateinit var ePass: EditText
-    lateinit var eVerif: EditText
     private lateinit var binding: ActivityCodeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +33,6 @@ class CodeActivity : AppCompatActivity() {
         sessionPref = SessionPref(this)
 
         eCode = findViewById(R.id.CodeEditText)
-        ePass = findViewById(R.id.passwordchangeInputEditText)
-        eVerif = findViewById(R.id.passwordchangeInputEditText2)
         sendcodebtn = findViewById(R.id.CodeBtn)
 
         sendcodebtn.setOnClickListener {
@@ -48,21 +44,9 @@ class CodeActivity : AppCompatActivity() {
 
     private fun validateCode(): Boolean {
         val codeText = eCode.text.toString().trim()
-        val passText = ePass.text.toString().trim()
-        val verifText = eVerif.text.toString().trim()
         if (codeText.isEmpty()) {
             eCode.error = "Code is required"
             eCode.requestFocus()
-            return false
-        }
-        if (passText.isEmpty()) {
-            ePass.error = "Password is required"
-            ePass.requestFocus()
-            return false
-        }
-        if (passText != verifText){
-            eVerif.error = "Password does not match"
-            eVerif.requestFocus()
             return false
         }
         return true
@@ -71,8 +55,8 @@ class CodeActivity : AppCompatActivity() {
     private fun validate() {
         loadingDialog.startLoadingDialog()
         val code = binding.CodeEditText.text.toString()
-        val password = binding.passwordchangeInputEditText.text.toString()
-        val codeRequest = CodeRequest(code,password)
+        val codeRequest = CodeRequest(code)
+        val email = intent.getStringExtra("email")
         Log.d("CodeActivity", "Code: $code")
         val apiService = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         apiService.verifcode(codeRequest).enqueue(object : Callback<Unit> {
@@ -81,9 +65,10 @@ class CodeActivity : AppCompatActivity() {
 
                 if (response.isSuccessful) {
                     Toast.makeText(this@CodeActivity, "Password Changed", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@CodeActivity, LoginActivity::class.java)
+                    val intent = Intent(this@CodeActivity, ChangePassActivity::class.java)
+                    intent.putExtra("email", email)
                     startActivity(intent)
-                    finish()
+
                 } else {
                     val errorMessage = response.errorBody()?.string() ?: "Unknown error occurred"
                     Log.e("CodeActivity", "Error occurred: $errorMessage")
