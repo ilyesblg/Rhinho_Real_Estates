@@ -27,6 +27,36 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+
+
+
+
+
+    <string name="search_estate">Search Estate</string>
+
+
+
+    <string name="reccete_type">Generated recipe</string>
+
+
+
+    <string name="ingredients">Ingredients and mesures</string>
+    <string name="instructions">Instructions</string>
+    <string name="longLorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc diam augue, vestibulum bibendum faucibus id, imperdiet id diam. Nullam ex lorem, placerat in sem vel, ullamcorper consectetur lacus. Curabitur sodales urna nibh, sit amet iaculis ante dapibus vitae. Suspendisse et tortor at sem maximus consectetur a id nunc.</string>
+
+
+    <string name="hello">"Hello, "</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="Profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="favourites">Favourites</string>
+    <string name="usernamevalue">username</string>
+    <string name="emailvalue">email</string>
+    <string name="Estate">Estate</string>
+    <string name="my_profile">My Profile</string>
+    <string name="title_activity_change_pass">ChangePassActivity</string>
+    <string name="valider">Valider</string>
+
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_code">Code</string>
@@ -82,17 +112,12 @@
     <string name="about_description" translatable="false">Rhino estates is a smartphone application that gives you shelter</string>
 
 
-    <string name="hello">"Hello, "</string>
-    <string name="title_activity_profile">ProfileActivity</string>
-    <string name="Profile">Profile</string>
-    <string name="home">Home</string>
-    <string name="favourites">Favourites</string>
-    <string name="usernamevalue">username</string>
-    <string name="emailvalue">email</string>
-    <string name="Estate">Estate</string>
-    <string name="my_profile">My Profile</string>
-    <string name="title_activity_change_pass">ChangePassActivity</string>
-    <string name="valider">Valider</string>
+    <string name="title_activity_pass_cahnge">PassCahngeActivity</string>
+    <string name="titre_d_annonce">Titre d\'annonce</string>
+    <string name="surface">Surface</string>
+    <string name="number_rooms">Number Rooms</string>
+    <string name="SizeTxt">Size</string>
+    <string name="select_an_room">Select an room</string>
 
 
 </resources>

@@ -36,7 +36,7 @@ class SessionPref {
         editor.commit()
     }
 
-    fun createRegisterSession(id: String, username: String, email: String, password: String,adress : String, phone: String)
+    fun createRegisterSession(id: String, username: String, email: String, password: String,adress : String, phone: String,image:String)
     {
         editor.putBoolean(IS_LOGGED_IN, true)
         editor.putString(USER_ID, id)
@@ -44,8 +44,8 @@ class SessionPref {
         editor.putString(USER_EMAIL, email)
         editor.putString(USER_ADDRESS, adress)
         editor.putString(USER_PASSWORD, password)
-
         editor.putString(USER_PHONE, phone)
+        editor.putString(USER_IMAGE, image)
         editor.commit()
     }
 
@@ -77,6 +77,7 @@ class SessionPref {
         user.put(USER_EMAIL, pref.getString(USER_EMAIL, "email")!!)
         user.put(USER_PASSWORD, pref.getString(USER_PASSWORD, "password")!!)
         user.put(USER_ADDRESS, pref.getString(USER_ADDRESS,"adress")!!)
+        user.put(USER_IMAGE, pref.getString(USER_IMAGE,"Image")!!)
         user.put(USER_PHONE, pref.getString(USER_PHONE, "phone")!!)
 //        user.put(USER_IMAGE, pref.getString(USER_IMAGE, null)!!)
         return user

@@ -52,6 +52,14 @@ interface RestApiService {
     @DELETE("users/{id}")
     fun deleteUser(@Path("id") id: String): Call<ResponseBody>
 
+    @GET("estates")
+    fun getFoodsList(): Call<List<Estate>>
+
+    @GET("estates/{id}")
+    fun getFoodById(@Path("id") id: String): Call<Estate>
+
+    @GET("room")
+    fun getRoomsList(): Call<List<Room>>
 
     @Multipart
     @POST("uploadfile")
@@ -65,6 +73,13 @@ interface RestApiService {
     fun uploadImage(
         @Part myFile: MultipartBody.Part
     ): Call<ResponseBody>
+
+    @Headers("Content-Type:application/json")
+    @POST("estates")
+    fun addEstate(
+        @Body info: Estate
+    ): Call<ResponseBody>
+
 
 }
 

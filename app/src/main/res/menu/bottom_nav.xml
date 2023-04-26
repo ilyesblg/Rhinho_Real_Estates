@@ -15,4 +15,8 @@
         android:id="@+id/cart"
         android:icon="@drawable/ic_baseline_favorite_24"/>
 
+    <item android:title="My Estates"
+        android:id="@+id/myEstates"
+        android:icon="@drawable/ic_baseline_festival_24"/>
+
 </menu>

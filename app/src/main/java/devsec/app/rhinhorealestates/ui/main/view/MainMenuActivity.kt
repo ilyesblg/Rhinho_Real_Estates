@@ -23,6 +23,8 @@ import devsec.app.RhinhoRealEstates.databinding.ActivityMainMenuBinding
 import devsec.app.rhinhorealestates.ui.main.fragments.HomeFragment
 import devsec.app.rhinhorealestates.api.RestApiService
 import devsec.app.rhinhorealestates.api.RetrofitInstance
+import devsec.app.rhinhorealestates.ui.main.fragments.BlogFragment
+import devsec.app.rhinhorealestates.ui.main.fragments.EstateFragment
 import devsec.app.rhinhorealestates.ui.main.fragments.ProfileFragment
 import devsec.app.rhinhorealestates.utils.services.ConnectivityObserver
 import devsec.app.rhinhorealestates.utils.services.LoadingDialog
@@ -162,6 +164,15 @@ class MainMenuActivity : AppCompatActivity() {
                     // Handle click on Cart menu item
                     true
                 }
+                R.id.myEstates -> {
+                    val profileFragment = ProfileFragment()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragments_container, profileFragment)
+                        .addToBackStack(null)
+                        .commit()
+                    drawerLayout.closeDrawer(navigationView)
+                    true
+                }
                 else -> false
             }
         }
@@ -171,7 +182,15 @@ class MainMenuActivity : AppCompatActivity() {
 
 
 
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.home -> replaceFragment(HomeFragment())
+                R.id.estate -> replaceFragment(EstateFragment())
+                R.id.myEstates -> replaceFragment(BlogFragment())
 
+            }
+            true
+        }
 
         // bottom navigation bar
 

@@ -99,13 +99,15 @@ class RegisterActivity : AppCompatActivity() {
                         val email_user = user.get("email").asString
                         val adress_user = user.get("adress").asString
                         val phone_user = user.get("phone").asString
+                        val user_image = user.get("Image").asString
                         sessionPref.createRegisterSession(
                             id_user,
                             username_user,
                             email_user,
                             "",
                             adress_user,
-                            phone_user
+                            phone_user,
+                            user_image
                         )
 
                         val intent = Intent(this@RegisterActivity, MainMenuActivity::class.java)
