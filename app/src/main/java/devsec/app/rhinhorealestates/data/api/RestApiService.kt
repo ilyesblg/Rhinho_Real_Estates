@@ -1,8 +1,7 @@
 
 package devsec.app.rhinhorealestates.api
 
-import devsec.app.rhinhorealestates.data.api.CodeRequest
-import devsec.app.rhinhorealestates.data.api.EmailRequest
+import devsec.app.rhinhorealestates.data.api.*
 import devsec.app.rhinhorealestates.data.models.*
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
@@ -12,8 +11,6 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import devsec.app.rhinhorealestates.data.api.UserRequest
-import devsec.app.rhinhorealestates.data.api.changepass
 
 interface RestApiService {
 
@@ -77,7 +74,7 @@ interface RestApiService {
     @Headers("Content-Type:application/json")
     @POST("estates")
     fun addEstate(
-        @Body info: Estate
+        @Body Estateinfo: Estate
     ): Call<ResponseBody>
 
 
@@ -86,7 +83,7 @@ interface RestApiService {
 class RetrofitInstance {
     companion object {
 
-        const val BASE_URL: String = "http://192.168.0.13:9090/api/"
+        const val BASE_URL: String = "http://192.168.1.183:9090/api/"
      // const val BASE_URL: String = "http://192.168.0.11:9090/api/"
 
 

@@ -31,7 +31,6 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -61,6 +60,7 @@ class EstateFormActivity : AppCompatActivity() {
 
     lateinit var dialog: Dialog
     lateinit var nameInput: EditText
+    lateinit var areaInput: EditText
     lateinit var editTextRoom: EditText
     lateinit var listViewRoom: ListView
     lateinit var addRoom: AppCompatButton
@@ -91,7 +91,7 @@ class EstateFormActivity : AppCompatActivity() {
     lateinit var tv19: TextView
     lateinit var tv20: TextView
 
-    //measure EditText
+    //size EditText
     lateinit var et1: EditText
     lateinit var et2: EditText
     lateinit var et3: EditText
@@ -179,9 +179,9 @@ class EstateFormActivity : AppCompatActivity() {
         categoryDropDown = findViewById(R.id.categoryDropDown)
 
         listDifficulty = ArrayList()
-        listDifficulty.add("Easy")
-        listDifficulty.add("Average")
-        listDifficulty.add("Hard")
+        listDifficulty.add("Single-Family Home")
+        listDifficulty.add("Luxury Estate")
+        listDifficulty.add("Vacation Home")
 
         val difficultyAdapter =
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, listDifficulty)
@@ -283,7 +283,9 @@ class EstateFormActivity : AppCompatActivity() {
         imgView = findViewById(R.id.imageViewEstate)
         addButton = findViewById(R.id.add_button)
         submitButton = findViewById(R.id.submit_button)
-        titreInput = findViewById(R.id.titreEditText)
+        nameInput = findViewById(R.id.titreEditText)
+
+        areaInput = findViewById(R.id.areaEditText)
         descInput = findViewById(R.id.descEditText)
         surfaceInput = findViewById(R.id.surfaceEditText)
         numberRoomInput = findViewById(R.id.numberroomEditText)
@@ -319,24 +321,24 @@ class EstateFormActivity : AppCompatActivity() {
         //removeRoom Button
         removeRoom.setOnClickListener {
             Log.d("- INC", inc.toString())
-            val ingredientInput = linearlayoutRooms.getChildAt(inc) as ConstraintLayout
-            val ingredientText = ingredientInput.getChildAt(0) as TextView
-            val ingredientSizeText = ingredientInput.getChildAt(2) as TextView
-            val measureInput = ingredientInput.getChildAt(1) as TextInputLayout
-            val measureEditText = measureInput.getChildAt(0) as FrameLayout
-            val measureTxt = measureEditText.getChildAt(0) as EditText
+            val roomInput = linearlayoutRooms.getChildAt(inc) as ConstraintLayout
+            val roomText = roomInput.getChildAt(0) as TextView
+            val roomSizeText = roomInput.getChildAt(2) as TextView
+            val sizeInput = roomInput.getChildAt(1) as TextInputLayout
+            val sizeEditText = sizeInput.getChildAt(0) as FrameLayout
+            val sizeTxt = sizeEditText.getChildAt(0) as EditText
 
-            ingredientInput.visibility = View.GONE
+            roomInput.visibility = View.GONE
 
-            if (!ingredientText.text.isEmpty()) {
-                roomsArray.add(ingredientText.text.toString())
+            if (!roomText.text.isEmpty()) {
+                roomsArray.add(roomText.text.toString())
                 roomsArray.sorted()
 
-                ingredientText.text = ""
+                roomText.text = ""
 
             }
-            ingredientSizeText.text = ""
-            measureTxt.text.clear()
+            roomSizeText.text = ""
+            sizeTxt.text.clear()
 
             inc--
             if (inc == 0) {
@@ -381,19 +383,19 @@ class EstateFormActivity : AppCompatActivity() {
             Log.d("checkSubmit", "1")
 
             for (i in 0 until inc) {
-                val ingredientInput = linearlayoutRooms.getChildAt(inc) as ConstraintLayout
-                val ingredientText = ingredientInput.getChildAt(0) as TextView
-                val measureInput = ingredientInput.getChildAt(1) as TextInputLayout
-                val measureEditText = measureInput.getChildAt(0) as FrameLayout
-                val measureTxt = measureEditText.getChildAt(0) as EditText
-                val measureTypeTxt = ingredientInput.getChildAt(2) as TextView
+                val roomInput = linearlayoutRooms.getChildAt(inc) as ConstraintLayout
+                val roomText = roomInput.getChildAt(0) as TextView
+                val sizeInput = roomInput.getChildAt(1) as TextInputLayout
+                val sizeEditText = sizeInput.getChildAt(0) as FrameLayout
+                val sizeTxt = sizeEditText.getChildAt(0) as EditText
+                val sizeTypeTxt = roomInput.getChildAt(2) as TextView
 
-                checkRooms = validateRooms(ingredientText, measureTxt, measureTypeTxt)
+                checkRooms = validateRooms(roomText, sizeTxt, sizeTypeTxt)
             }
             Log.d("checkSubmit", "2")
 
             if (validate(
-                    titreInput,
+                    nameInput,
                     descInput,
                     surfaceInput,
                     numberRoomInput,
@@ -403,15 +405,16 @@ class EstateFormActivity : AppCompatActivity() {
                 Log.d("checkSubmit", "3")
 
                 submit(
+
                     nameInput.text.toString(),
-                    titreInput.text.toString(),
-                    descInput.text.toString(),
-                    surfaceInput.text.toString(),
-                    numberRoomInput.text.toString(),
+                    areaInput.text.toString(),
                     categoryDropDown.text.toString(),
+                    descInput.text.toString(),
                     bio,
                     idUser,
+                    surfaceInput.text.toString(),
                     username,
+                    numberRoomInput.text.toString(),
                     tv1.text.toString(),
                     tv2.text.toString(),
                     tv3.text.toString(),
@@ -432,26 +435,26 @@ class EstateFormActivity : AppCompatActivity() {
                     tv18.text.toString(),
                     tv19.text.toString(),
                     tv20.text.toString(),
-                    measureFuse(et1, t1),
-                    measureFuse(et2, t2),
-                    measureFuse(et3, t3),
-                    measureFuse(et4, t4),
-                    measureFuse(et5, t5),
-                    measureFuse(et6, t6),
-                    measureFuse(et7, t7),
-                    measureFuse(et8, t8),
-                    measureFuse(et9, t9),
-                    measureFuse(et10, t10),
-                    measureFuse(et11, t11),
-                    measureFuse(et12, t12),
-                    measureFuse(et13, t13),
-                    measureFuse(et14, t14),
-                    measureFuse(et15, t15),
-                    measureFuse(et16, t16),
-                    measureFuse(et17, t17),
-                    measureFuse(et18, t18),
-                    measureFuse(et19, t19),
-                    measureFuse(et20, t20)
+                    sizeFuse(et1, t1),
+                    sizeFuse(et2, t2),
+                    sizeFuse(et3, t3),
+                    sizeFuse(et4, t4),
+                    sizeFuse(et5, t5),
+                    sizeFuse(et6, t6),
+                    sizeFuse(et7, t7),
+                    sizeFuse(et8, t8),
+                    sizeFuse(et9, t9),
+                    sizeFuse(et10, t10),
+                    sizeFuse(et11, t11),
+                    sizeFuse(et12, t12),
+                    sizeFuse(et13, t13),
+                    sizeFuse(et14, t14),
+                    sizeFuse(et15, t15),
+                    sizeFuse(et16, t16),
+                    sizeFuse(et17, t17),
+                    sizeFuse(et18, t18),
+                    sizeFuse(et19, t19),
+                    sizeFuse(et20, t20)
                 )
 
                 Log.d("checkSubmit", "4")
@@ -465,10 +468,10 @@ class EstateFormActivity : AppCompatActivity() {
 //        startActivity(intent)
     }
 
-    private fun measureFuse(et: EditText, t: TextView): String {
-        val measure=""
+    private fun sizeFuse(et: EditText, t: TextView): String {
+        val size=""
         if (et.text.isEmpty() || t.text.isEmpty() ){
-            return measure
+            return size
         }else{
             return et.text.toString() + " " + t.text.toString()
         }
@@ -483,7 +486,7 @@ class EstateFormActivity : AppCompatActivity() {
         dialog.show()
 
         if (iM==0){
-            dialog.findViewById<TextView>(R.id.spinnerHeader).text="Select an ingredient"
+            dialog.findViewById<TextView>(R.id.spinnerHeader).text="Select an room"
         }else if (iM==1){
             dialog.findViewById<TextView>(R.id.spinnerHeader).text="Select an Size Type"
         }
@@ -577,19 +580,19 @@ class EstateFormActivity : AppCompatActivity() {
 
     }
 
-    private fun validateRooms(ingredientTxt: TextView,measureTxt:EditText,ingredientSizeText:TextView ):Boolean{
-        if(ingredientTxt.text.isEmpty() || measureTxt.text.isEmpty() || ingredientSizeText.text.isEmpty()){
-            if (ingredientTxt.text.isEmpty()){
-                ingredientTxt.error="ingredient is required"
-                ingredientTxt.requestFocus()
+    private fun validateRooms(roomTxt: TextView,sizeTxt:EditText,roomSizeText:TextView ):Boolean{
+        if(roomTxt.text.isEmpty() || sizeTxt.text.isEmpty() || roomSizeText.text.isEmpty()){
+            if (roomTxt.text.isEmpty()){
+                roomTxt.error="room is required"
+                roomTxt.requestFocus()
             }
-            if (measureTxt.text.isEmpty()){
-                measureTxt.error="measure is required"
-                measureTxt.requestFocus()
+            if (sizeTxt.text.isEmpty()){
+                sizeTxt.error="size is required"
+                sizeTxt.requestFocus()
             }
-            if (ingredientSizeText.text.isEmpty()){
-                ingredientSizeText.error="measure Type is required"
-                ingredientSizeText.requestFocus()
+            if (roomSizeText.text.isEmpty()){
+                roomSizeText.error="size Type is required"
+                roomSizeText.requestFocus()
             }
          return false
         }
@@ -639,14 +642,15 @@ class EstateFormActivity : AppCompatActivity() {
     }
     
     private fun submit(
-        name:String,
+        name: String,
         area: String,
         category: String,
         description: String,
-        username: String,
-        userId: String,
         isCoastal: Boolean,
+        userId: String,
         surface: String,
+        username: String,
+        numberRoom: String,
         strRoom1: String,
         strRoom2: String,
         strRoom3: String,
@@ -687,9 +691,8 @@ class EstateFormActivity : AppCompatActivity() {
         strSize18: String,
         strSize19: String,
         strSize20: String,
-        measureFuse: String
 
-    )
+        )
     {
 
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
@@ -738,8 +741,8 @@ class EstateFormActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val roomsList = response.body()
                     if (roomsList != null) {
-                        for (ingredient in roomsList) {
-                            roomsArray.add(ingredient.name)
+                        for (room in roomsList) {
+                            roomsArray.add(room.name)
                         }
                         Log.d("TAG", "onResponse: $roomsArray")
                     }
@@ -757,21 +760,21 @@ class EstateFormActivity : AppCompatActivity() {
 
 
 
-//        ingredientInput1=findViewById(R.id.ingredientInput1)
-//        ingredientInput2=findViewById(R.id.ingredientInput2)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput4=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
-//        ingredientInput3=findViewById(R.id.ingredientInput3)
+//        roomInput1=findViewById(R.id.roomInput1)
+//        roomInput2=findViewById(R.id.roomInput2)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput4=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)
+//        roomInput3=findViewById(R.id.roomInput3)

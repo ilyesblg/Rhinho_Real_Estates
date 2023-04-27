@@ -7,9 +7,9 @@ data class Estate(@SerializedName("_id")
                     val id: String,
                   @SerializedName("name")
                   val name: String,
-                  @SerializedName("strArea")
+                  @SerializedName("area")
                     val area: String,
-                  @SerializedName("strCategory")
+                  @SerializedName("category")
                     val category: String,
                   @SerializedName("description")
                   val description: String,
@@ -35,6 +35,22 @@ data class Estate(@SerializedName("_id")
                   val  usersDisliked :  ArrayList<String>,
                   @SerializedName("strRoom1")
                     val strRoom1: String,
+                  @SerializedName("strRoom2")
+                  val strRoom2: String,
+                  @SerializedName("strRoom3")
+                  val strRoom3: String,
+                  @SerializedName("strRoom4")
+                  val strRoom4: String,
+                  @SerializedName("strRoom5")
+                  val strRoom5: String,
+                  @SerializedName("strRoom6")
+                  val strRoom6: String,
+                  @SerializedName("strRoom7")
+                  val strRoom7: String,
+                  @SerializedName("strRoom8")
+                  val strRoom8: String,
+                  @SerializedName("strRoom9")
+                  val strRoom9: String,
                   @SerializedName("strRoom10")
                     val strRoom10: String,
                   @SerializedName("strRoom11")
@@ -55,24 +71,8 @@ data class Estate(@SerializedName("_id")
                     val strRoom18: String,
                   @SerializedName("strRoom19")
                     val strRoom19: String,
-                  @SerializedName("strRoom2")
-                    val strRoom2: String,
                   @SerializedName("strRoom20")
                     val strRoom20: String,
-                  @SerializedName("strRoom3")
-                    val strRoom3: String,
-                  @SerializedName("strRoom4")
-                    val strRoom4: String,
-                  @SerializedName("strRoom5")
-                    val strRoom5: String,
-                  @SerializedName("strRoom6")
-                    val strRoom6: String,
-                  @SerializedName("strRoom7")
-                    val strRoom7: String,
-                  @SerializedName("strRoom8")
-                    val strRoom8: String,
-                  @SerializedName("strRoom9")
-                    val strRoom9: String,
                   @SerializedName("strSize1")
                     val strSize1: String,
                   @SerializedName("strSize2")
@@ -119,14 +119,16 @@ data class Estate(@SerializedName("_id")
 
     {
         constructor(
-            area: String,
             name: String,
+            area: String,
             category: String,
-            description:String, image: String,
+            description:String,
+            image: String,
             isCoastal:Boolean,
             surface:String,
             username:String,
-            userId:String, strRoom1: String,
+            userId:String,
+            strRoom1: String,
             strRoom2: String,
             strRoom3: String,
             strRoom4: String,
