@@ -153,7 +153,7 @@ class EstateFormActivity : AppCompatActivity() {
         username = user.get(SessionPref.USER_NAME).toString()
         initRooms()
         roomsTypeArray = ArrayList()
-        val sizeType: List<String> = Arrays.asList("Mg", "Gr", "Kg", "Ml", "Li", "Un")
+        val sizeType: List<String> = Arrays.asList("M2", "Foot","Yard")
         roomsTypeArray.addAll(sizeType)
 
 
@@ -519,12 +519,10 @@ class EstateFormActivity : AppCompatActivity() {
                 AdapterView.OnItemClickListener { adapterView, view, i, l ->
                     if (tv.text.isEmpty()){
                         tv.text = (adapter.getItem(i) as String)
-                        list.remove(adapter.getItem(i))
                         dialog.dismiss()
                     }else{
                         list.add(tv.text.toString())
                         tv.text = (adapter.getItem(i) as String)
-                        list.remove(adapter.getItem(i))
                         dialog.dismiss()
                     }
 
@@ -671,26 +669,26 @@ class EstateFormActivity : AppCompatActivity() {
         strRoom18: String,
         strRoom19: String,
         strRoom20: String,
-        strSize1: String,
-        strSize2: String,
-        strSize3: String,
-        strSize4: String,
-        strSize5: String,
-        strSize6: String,
-        strSize7: String,
-        strSize8: String,
-        strSize9: String,
-        strSize10: String,
-        strSize11: String,
-        strSize12: String,
-        strSize13: String,
-        strSize14: String,
-        strSize15: String,
-        strSize16: String,
-        strSize17: String,
-        strSize18: String,
-        strSize19: String,
-        strSize20: String,
+        sizeFuse1: String,
+        sizeFuse2: String,
+        sizeFuse3: String,
+        sizeFuse4: String,
+        sizeFuse5: String,
+        sizeFuse6: String,
+        sizeFuse7: String,
+        sizeFuse8: String,
+        sizeFuse9: String,
+        sizeFuse10: String,
+        sizeFuse11: String,
+        sizeFuse12: String,
+        sizeFuse13: String,
+        sizeFuse14: String,
+        sizeFuse15: String,
+        sizeFuse16: String,
+        sizeFuse17: String,
+        sizeFuse18: String,
+        sizeFuse19: String,
+        sizeFuse20: String,
 
         )
     {
@@ -698,7 +696,7 @@ class EstateFormActivity : AppCompatActivity() {
         val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
         val image =  "test"+Random()
         val estateinfo = Estate (
-            name,area,category, description, image, isCoastal,surface,username , userId, strRoom1,strRoom2,strRoom3,strRoom4,strRoom5,strRoom6,strRoom7,strRoom8,strRoom9,strRoom10,strRoom11,strRoom12,strRoom13,strRoom14,strRoom15,strRoom16,strRoom17,strRoom18,strRoom19,strRoom20,strSize1,strSize2,strSize3,strSize4,strSize5,strSize6,strSize7,strSize8,strSize9,strSize10,strSize11,strSize12,strSize13,strSize14,strSize15,strSize16,strSize17,strSize18,strSize19,strSize20
+            name,area,category, description, image, isCoastal,surface,username , userId, strRoom1,strRoom2,strRoom3,strRoom4,strRoom5,strRoom6,strRoom7,strRoom8,strRoom9,strRoom10,strRoom11,strRoom12,strRoom13,strRoom14,strRoom15,strRoom16,strRoom17,strRoom18,strRoom19,strRoom20,sizeFuse1,sizeFuse2,sizeFuse3,sizeFuse4,sizeFuse5,sizeFuse6,sizeFuse7,sizeFuse8,sizeFuse9,sizeFuse10,sizeFuse11,sizeFuse12,sizeFuse13,sizeFuse14,sizeFuse15,sizeFuse16,sizeFuse17,sizeFuse18,sizeFuse19,sizeFuse20
 
                 )
         Log.d("check","4")

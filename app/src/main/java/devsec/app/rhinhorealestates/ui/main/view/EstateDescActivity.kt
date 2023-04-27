@@ -133,26 +133,26 @@ class EstateDescActivity : AppCompatActivity() {
                     ingredientsAdapter = IngredientsTextAdapter(ingredientsList)
                     ingredientsRecyclerView.adapter = ingredientsAdapter
 
-                    if (!food?.strSize1.isNullOrEmpty() && food?.strSize1.toString().trim().isNotBlank()) { measures.add(food?.strSize1.toString()) }
-                    if (!food?.strSize2.isNullOrEmpty() && food?.strSize2.toString().trim().isNotBlank()) { measures.add(food?.strSize2.toString()) }
-                    if (!food?.strSize3.isNullOrEmpty() && food?.strSize3.toString().trim().isNotBlank()) { measures.add(food?.strSize3.toString()) }
-                    if (!food?.strSize4.isNullOrEmpty() && food?.strSize4.toString().trim().isNotBlank()) { measures.add(food?.strSize4.toString()) }
-                    if (!food?.strSize5.isNullOrEmpty() && food?.strSize5.toString().trim().isNotBlank()) { measures.add(food?.strSize5.toString()) }
-                    if (!food?.strSize6.isNullOrEmpty() && food?.strSize6.toString().trim().isNotBlank()) { measures.add(food?.strSize6.toString()) }
-                    if (!food?.strSize7.isNullOrEmpty() && food?.strSize7.toString().trim().isNotBlank()) { measures.add(food?.strSize7.toString()) }
-                    if (!food?.strSize8.isNullOrEmpty() && food?.strSize8.toString().trim().isNotBlank()) { measures.add(food?.strSize8.toString()) }
-                    if (!food?.strSize9.isNullOrEmpty() && food?.strSize9.toString().trim().isNotBlank()) { measures.add(food?.strSize9.toString()) }
-                    if (!food?.strSize10.isNullOrEmpty() && food?.strSize10.toString().trim().isNotBlank()) { measures.add(food?.strSize10.toString()) }
-                    if (!food?.strSize11.isNullOrEmpty() && food?.strSize11.toString().trim().isNotBlank()) { measures.add(food?.strSize11.toString()) }
-                    if (!food?.strSize12.isNullOrEmpty() && food?.strSize12.toString().trim().isNotBlank()) { measures.add(food?.strSize12.toString()) }
-                    if (!food?.strSize13.isNullOrEmpty() && food?.strSize13.toString().trim().isNotBlank()) { measures.add(food?.strSize13.toString()) }
-                    if (!food?.strSize14.isNullOrEmpty() && food?.strSize14.toString().trim().isNotBlank()) { measures.add(food?.strSize14.toString()) }
-                    if (!food?.strSize15.isNullOrEmpty() && food?.strSize15.toString().trim().isNotBlank()) { measures.add(food?.strSize15.toString()) }
-                    if (!food?.strSize16.isNullOrEmpty() && food?.strSize16.toString().trim().isNotBlank()) { measures.add(food?.strSize16.toString()) }
-                    if (!food?.strSize17.isNullOrEmpty() && food?.strSize17.toString().trim().isNotBlank()) { measures.add(food?.strSize17.toString()) }
-                    if (!food?.strSize18.isNullOrEmpty() && food?.strSize18.toString().trim().isNotBlank()) { measures.add(food?.strSize18.toString()) }
-                    if (!food?.strSize19.isNullOrEmpty() && food?.strSize19.toString().trim().isNotBlank()) { measures.add(food?.strSize19.toString()) }
-                    if (!food?.strSize20.isNullOrEmpty() && food?.strSize20.toString().trim().isNotBlank()) { measures.add(food?.strSize20.toString()) }
+                    if (!food?.sizeFuse1.isNullOrEmpty() && food?.sizeFuse1.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse1.toString()) }
+                    if (!food?.sizeFuse2.isNullOrEmpty() && food?.sizeFuse2.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse2.toString()) }
+                    if (!food?.sizeFuse3.isNullOrEmpty() && food?.sizeFuse3.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse3.toString()) }
+                    if (!food?.sizeFuse4.isNullOrEmpty() && food?.sizeFuse4.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse4.toString()) }
+                    if (!food?.sizeFuse5.isNullOrEmpty() && food?.sizeFuse5.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse5.toString()) }
+                    if (!food?.sizeFuse6.isNullOrEmpty() && food?.sizeFuse6.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse6.toString()) }
+                    if (!food?.sizeFuse7.isNullOrEmpty() && food?.sizeFuse7.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse7.toString()) }
+                    if (!food?.sizeFuse8.isNullOrEmpty() && food?.sizeFuse8.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse8.toString()) }
+                    if (!food?.sizeFuse9.isNullOrEmpty() && food?.sizeFuse9.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse9.toString()) }
+                    if (!food?.sizeFuse10.isNullOrEmpty() && food?.sizeFuse10.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse10.toString()) }
+                    if (!food?.sizeFuse11.isNullOrEmpty() && food?.sizeFuse11.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse11.toString()) }
+                    if (!food?.sizeFuse12.isNullOrEmpty() && food?.sizeFuse12.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse12.toString()) }
+                    if (!food?.sizeFuse13.isNullOrEmpty() && food?.sizeFuse13.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse13.toString()) }
+                    if (!food?.sizeFuse14.isNullOrEmpty() && food?.sizeFuse14.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse14.toString()) }
+                    if (!food?.sizeFuse15.isNullOrEmpty() && food?.sizeFuse15.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse15.toString()) }
+                    if (!food?.sizeFuse16.isNullOrEmpty() && food?.sizeFuse16.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse16.toString()) }
+                    if (!food?.sizeFuse17.isNullOrEmpty() && food?.sizeFuse17.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse17.toString()) }
+                    if (!food?.sizeFuse18.isNullOrEmpty() && food?.sizeFuse18.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse18.toString()) }
+                    if (!food?.sizeFuse19.isNullOrEmpty() && food?.sizeFuse19.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse19.toString()) }
+                    if (!food?.sizeFuse20.isNullOrEmpty() && food?.sizeFuse20.toString().trim().isNotBlank()) { measures.add(food?.sizeFuse20.toString()) }
                     mesuresList.addAll(measures.filter { it.trim().isNotEmpty() })
 
                     measuresAdapter = MeasuresTextAdapter(mesuresList)
