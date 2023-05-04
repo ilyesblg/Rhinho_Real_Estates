@@ -19,16 +19,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/editProfileImage"
+    <ImageButton
+        android:id="@+id/editProfileImageButton"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="72dp"
+        android:background="@android:color/transparent"
         android:src="@drawable/ic_baseline_person_24"
+        app:layout_constraintBottom_toTopOf="@+id/updateProfileButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editProfileToolbar" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.173" />
 
     <EditText
         android:id="@+id/editProfileUsername"
@@ -52,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfileImage" />
+        app:layout_constraintTop_toBottomOf="@+id/editProfileImageButton" />
 
     <EditText
         android:id="@+id/editProfileEmail"

@@ -138,7 +138,7 @@ class LoginActivity : AppCompatActivity() {
                         val email_user = user.get("email").asString
                         val adress_user = user.get("adress").asString
                         val phone_user = user.get("phone").asString
-                        val user_image = user.get("Image").asString
+                        val user_image = user.get("image").asString
 
                         sessionPref.createRegisterSession(id_user, username_user, email_user, "",adress_user,phone_user,user_image)
                         Toast.makeText(this@LoginActivity, "Welcome!", Toast.LENGTH_SHORT).show()

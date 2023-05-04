@@ -110,6 +110,20 @@
                             />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <ImageButton
+                        android:id="@+id/chatButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:contentDescription="chat"
+                        android:src="@drawable/chat_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.952"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="NotSibling" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,6 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp">
+
 
                     <TextView
                         android:id="@+id/ingredientHeader"
@@ -163,6 +178,8 @@
 
                         />
 
+
+
                     <TextView
                         android:id="@+id/foodRecipeInstructions"
                         android:layout_width="wrap_content"
@@ -176,6 +193,7 @@
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/foodRecipeInstructionHeader" />
+
 
                     <TextView
                         android:id="@+id/foodRecipeSource"

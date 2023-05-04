@@ -1,10 +1,13 @@
 package devsec.app.rhinhorealestates.ui.main.view
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.DEBUG
 import android.webkit.WebView
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -37,6 +40,7 @@ class EstateDescActivity : AppCompatActivity() {
     lateinit var recipeLink : String
 
 
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_estate_desc)
@@ -73,6 +77,7 @@ class EstateDescActivity : AppCompatActivity() {
 
         }
 
+
         webView = findViewById(R.id.foodRecipeSourceWebView)
         val source = findViewById<TextView>(R.id.foodRecipeSource)
         source.visibility = TextView.GONE
@@ -90,6 +95,12 @@ class EstateDescActivity : AppCompatActivity() {
 
 
         }
+        val chatButton: Button = findViewById(R.id.chatButton)
+        chatButton.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     fun getRecipe(id: String, recipeImage: ImageView, recipeCategory: TextView, recipeName: TextView, recipeInstructions: TextView) {

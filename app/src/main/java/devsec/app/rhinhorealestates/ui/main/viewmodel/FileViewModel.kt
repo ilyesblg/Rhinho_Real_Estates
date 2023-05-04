@@ -9,12 +9,10 @@ import java.io.File
 
 class FileViewModel(private val repository: FileRepository = FileRepository()):ViewModel() {
 
+    suspend fun uploadFile(id: String, file: MultipartBody.Part) = repository.uploadFile(id, file)
 
-   suspend fun uploadFile(file: MultipartBody.Part) = repository.uploadFile(file)
-
-    fun uploadFile(file: File) = viewModelScope.launch {
-        viewModelScope.launch {
-            repository.uploadFile(MultipartBody.Part.createFormData("file", file.name))
-        }
+    fun uploadFile(id: String, file: File) = viewModelScope.launch {
+        repository.uploadFile(id, MultipartBody.Part.createFormData("file", file.name))
     }
 }
+

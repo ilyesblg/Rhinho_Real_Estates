@@ -1,16 +1,13 @@
 package devsec.app.rhinhorealestates.data.models
 
-data  class User (
-    val  id :  String ,
-    val  username :  String ,
-    val  email :  String ,
-    val adress : String,
-    val  password :  String ,
-    val  phone :  String ) {
-
-    constructor(id: String) : this(id,"","","","","")
-    constructor(username: String, password: String, email: String,adress : String, phone: String) : this("", username, email, password,adress, phone)
-   // constructor(id: String) : this(id,"","","","","")
-
+data class User (
+    val id: String,
+    val username: String,
+    val email: String,
+    val address: String,
+    val password: String,
+    val phone: String
+) {
+    constructor(username: String, email: String, address: String, password: String, phone: String) : this("", username, email, address, password, phone)
 }
 //    val  photo :  String

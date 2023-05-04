@@ -28,16 +28,10 @@
     <string name="previous">Previous</string>
 
 
-
-
-
-
     <string name="search_estate">Search Estate</string>
 
 
-
     <string name="reccete_type">Generated recipe</string>
-
 
 
     <string name="ingredients">Ingredients and mesures</string>
@@ -121,6 +115,9 @@
     <string name="castle">Castle</string>
     <string name="type">Type</string>
     <string name="area">Area</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="type_a_message">Type a message</string>
+    <string name="send">Send</string>
 
 
 </resources>

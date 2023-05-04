@@ -1,4 +1,3 @@
-
 package devsec.app.rhinhorealestates.api
 
 import devsec.app.rhinhorealestates.data.api.*
@@ -66,9 +65,10 @@ interface RestApiService {
 
 
     @Multipart
-    @POST("uploadfile")
+    @POST("users/upload/{id}")
     fun uploadImage(
-        @Part myFile: MultipartBody.Part
+        @Path("id") id: String,
+        @Part image: MultipartBody.Part
     ): Call<ResponseBody>
 
     @Headers("Content-Type:application/json")
@@ -77,13 +77,12 @@ interface RestApiService {
         @Body Estateinfo: Estate
     ): Call<ResponseBody>
 
-
 }
 
 class RetrofitInstance {
     companion object {
 
-        const val BASE_URL: String = "http://192.168.1.183:9090/api/"
+        const val BASE_URL: String = "http://172.16.7.176:9090/api/"
      // const val BASE_URL: String = "http://192.168.0.11:9090/api/"
 
 

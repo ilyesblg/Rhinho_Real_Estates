@@ -5,8 +5,6 @@ import devsec.app.rhinhorealestates.api.RetrofitInstance
 import okhttp3.MultipartBody
 
 class FileRepository {
-
-    suspend fun uploadFile(file: MultipartBody.Part) = RetrofitInstance.getRetrofitInstance()
-        .create(RestApiService::class.java).uploadImage(file)
-
+    suspend fun uploadFile(id: String, file: MultipartBody.Part) = RetrofitInstance.getRetrofitInstance()
+        .create(RestApiService::class.java).uploadImage(id, file)
 }

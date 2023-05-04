@@ -1,75 +1,95 @@
 package devsec.app.rhinhorealestates.ui.main.view
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
-import com.google.android.material.imageview.ShapeableImageView
 import devsec.app.RhinhoRealEstates.R
 import devsec.app.rhinhorealestates.api.RestApiService
 import devsec.app.rhinhorealestates.api.RetrofitInstance
 import devsec.app.rhinhorealestates.data.models.User
 import devsec.app.rhinhorealestates.utils.session.SessionPref
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import okhttp3.*
+import okhttp3.MediaType
+
 
 class EditProfileActivity : AppCompatActivity() {
-    lateinit var sessionPref: SessionPref
-    lateinit var id: String
-    lateinit var image: String
-    lateinit var user: HashMap<String, String>
 
+    private lateinit var sessionPref: SessionPref
+    private lateinit var id: String
+    private lateinit var image: String
+    private lateinit var user: HashMap<String, String>
+    private lateinit var imageButton: ImageButton
 
-    @SuppressLint("WrongViewCast")
+    companion object {
+        private const val GALLERY_REQUEST_CODE = 100
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
+
         sessionPref = SessionPref(this)
-
-        val username = findViewById<TextView>(R.id.editProfileUsername)
-        val email = findViewById<TextView>(R.id.editProfileEmail)
-        val phone = findViewById<TextView>(R.id.editProfilePhone)
-        val password = findViewById<TextView>(R.id.editProfilePassword)
-        val adress = findViewById<TextView>(R.id.editProfileAdress)
-        val updateButton = findViewById<Button>(R.id.updateProfileButton)
-
-
         user = sessionPref.getUserPref()
-        image = user.get(SessionPref.USER_IMAGE).toString()
-        id = user.get(SessionPref.USER_ID).toString()
-        username.text = user.get(SessionPref.USER_NAME)
-        email.text = user.get(SessionPref.USER_EMAIL)
-        password.text = user.get(SessionPref.USER_PASSWORD)
-        password.visibility = TextView.INVISIBLE
-        adress.text = user.get(SessionPref.USER_ADDRESS)
-        phone.text = user.get(SessionPref.USER_PHONE)
+
+        id = user[SessionPref.USER_ID].toString()
+        image = user[SessionPref.USER_IMAGE].toString()
 
         val toolbar = findViewById<Toolbar>(R.id.editProfileToolbar)
-        toolbar.setNavigationOnClickListener {
-            finish()
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        toolbar.setNavigationOnClickListener { finish() }
+        val usernameEditText = findViewById<EditText>(R.id.editProfileUsername)
+        val emailEditText = findViewById<EditText>(R.id.editProfileEmail)
+        val passwordEditText = findViewById<EditText>(R.id.editProfilePassword)
+        val addressEditText = findViewById<EditText>(R.id.editProfileAdress)
+        val phoneEditText = findViewById<EditText>(R.id.editProfilePhone)
+        val updateButton = findViewById<Button>(R.id.updateProfileButton)
+
+        usernameEditText.setText(user[SessionPref.USER_NAME])
+        emailEditText.setText(user[SessionPref.USER_EMAIL])
+        passwordEditText.setText(user[SessionPref.USER_PASSWORD])
+        passwordEditText.visibility = View.INVISIBLE
+        addressEditText.setText(user[SessionPref.USER_ADDRESS])
+        phoneEditText.setText(user[SessionPref.USER_PHONE])
+
+        imageButton = findViewById(R.id.editProfileImageButton)
+
+
+
+
+        imageButton.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, GALLERY_REQUEST_CODE)
         }
 
         updateButton.setOnClickListener {
             val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+
             val userPref = User(
-                username = username.text.toString(),
-                email = email.text.toString(),
-                password = password.text.toString(),
-                adress = adress.text.toString(),
-                phone = phone.text.toString()
+                id = "",
+                username = usernameEditText.text.toString(),
+                email = emailEditText.text.toString(),
+                password = passwordEditText.text.toString(),
+                address = addressEditText.text.toString(),
+                phone = phoneEditText.text.toString()
+
             )
-            val call = retIn.updateUser(
-                user.get(SessionPref.USER_ID).toString(),
-                userPref
-            )
+
+            val call = retIn.updateUser(id, userPref)
+
             call.enqueue(object : Callback<User> {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
                     if (response.isSuccessful) {
@@ -78,13 +98,15 @@ class EditProfileActivity : AppCompatActivity() {
                             "Profile Updated",
                             Toast.LENGTH_SHORT
                         ).show()
+
                         sessionPref.setUserPref(
-                            username.text.toString(),
-                            email.text.toString(),
-                            password.text.toString(),
-                            adress.text.toString(),
-                            phone.text.toString()
+                            usernameEditText.text.toString(),
+                            emailEditText.text.toString(),
+                            passwordEditText.text.toString(),
+                            addressEditText.text.toString(),
+                            phoneEditText.text.toString()
                         )
+
                         val intent = Intent(this@EditProfileActivity, MainMenuActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -107,12 +129,77 @@ class EditProfileActivity : AppCompatActivity() {
 
             })
         }
-        val imageView: ShapeableImageView = findViewById(R.id.editProfileImage)
-        val url = "http://172.16.6.217:9090/img/"+image
-        Glide.with(this)
-            .load(url)
-            .placeholder(R.drawable.ic_baseline_person_24)
-            .into(imageView)
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            val selectedImage = data.data
+            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+
+            selectedImage?.let {
+                val cursor = contentResolver.query(
+                    it,
+                    filePathColumn,
+                    null,
+                    null,
+                    null
+                )
+
+                cursor?.let { c ->
+                    c.moveToFirst()
+                    val columnIndex = c.getColumnIndex(filePathColumn[0])
+                    val imagePath = c.getString(columnIndex)
+
+                    c.close()
+
+                    val file = File(imagePath)
+
+                    val requestFile =
+                        RequestBody.create(MediaType.parse("multipart/form-data"), file)
+                    val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+
+                    val retIn =
+                        RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+                    val call = retIn.uploadImage(id, body)
+
+                    call.enqueue(object : Callback<ResponseBody> {
+                        override fun onResponse(
+                            call: Call<ResponseBody>,
+                            response: Response<ResponseBody>
+                        ) {
+                            if (response.isSuccessful) {
+                                Toast.makeText(
+                                    this@EditProfileActivity,
+                                    "Image uploaded",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                val intent = Intent(
+                                    this@EditProfileActivity,
+                                    EditProfileActivity::class.java
+                                )
+                                startActivity(intent)
+                                finish()
+                            } else {
+                                Toast.makeText(
+                                    this@EditProfileActivity,
+                                    "Failed to upload image",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                            Toast.makeText(
+                                this@EditProfileActivity,
+                                "Failed to upload image",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    })
+                }
+            }
+        }
     }
 }
