@@ -77,6 +77,9 @@ interface RestApiService {
         @Body Estateinfo: Estate
     ): Call<ResponseBody>
 
+    @POST("message")
+    fun message(@Body message: MessageRequest): Call<Unit>
+
 }
 
 class RetrofitInstance {
