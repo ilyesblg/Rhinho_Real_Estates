@@ -40,7 +40,7 @@ import kotlin.collections.HashMap
 class EstateFormActivity : AppCompatActivity() {
 
     lateinit var imgView: ImageView
-
+    lateinit var addButton: AppCompatButton
     lateinit var submitButton: Button
 //    lateinit var imageUri: Uri
 
@@ -158,6 +158,21 @@ class EstateFormActivity : AppCompatActivity() {
         roomsTypeArray.addAll(sizeType)
 
 
+        // Image Picker
+        addButton = findViewById(R.id.add_button)
+        imgView = findViewById(R.id.imageViewEstate)
+        addButton.setOnClickListener {
+
+            Log.d("TAG", "onClick: ")
+
+
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                requestPermissions(permissions, REQUEST_CODE)
+            } else {
+                pickImageFromGallery()
+            }
+        }
 
 
 
@@ -266,7 +281,8 @@ class EstateFormActivity : AppCompatActivity() {
         t19 = findViewById(R.id.SizeTxtType19)
         t20 = findViewById(R.id.SizeTxtType20)
 
-
+        imgView = findViewById(R.id.imageViewEstate)
+        addButton = findViewById(R.id.add_button)
         submitButton = findViewById(R.id.submit_button)
         nameInput = findViewById(R.id.titreEditText)
 
@@ -353,6 +369,9 @@ class EstateFormActivity : AppCompatActivity() {
 
         }
 
+        addButton.setOnClickListener {
+            pickImageFromGallery()
+        }
 
         submitButton.setOnClickListener {
             Log.d("checkSubmit", "0")

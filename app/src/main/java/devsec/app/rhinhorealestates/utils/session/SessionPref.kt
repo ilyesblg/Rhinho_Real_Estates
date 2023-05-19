@@ -55,7 +55,7 @@ class SessionPref {
         editor.commit()
     }
 
-    fun updateProfileSession(id: String, username: String, email: String,password: String,address : String, phone: String)
+    fun updateProfileSession(id: String, username: String, email: String,password: String,address : String, phone: String , image: String)
     {
         editor.putString(USER_ID, id)
         editor.putString(USER_NAME, username)
@@ -63,6 +63,7 @@ class SessionPref {
         editor.putString(USER_PASSWORD, password)
         editor.putString(USER_ADDRESS, address)
         editor.putString(USER_PHONE, phone)
+        editor.putString(USER_IMAGE, image)
         editor.commit()
     }
 

@@ -9,7 +9,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.CalendarView
+import android.widget.ImageView
 import android.widget.Toast
 
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -19,11 +19,16 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import devsec.app.RhinhoRealEstates.R
 import devsec.app.RhinhoRealEstates.databinding.ActivityMainMenuBinding
+import devsec.app.rhinhorealestates.ui.main.fragments.HomeFragment
 import devsec.app.rhinhorealestates.api.RestApiService
 import devsec.app.rhinhorealestates.api.RetrofitInstance
-import devsec.app.rhinhorealestates.ui.main.fragments.*
+import devsec.app.rhinhorealestates.data.models.User
+import devsec.app.rhinhorealestates.ui.main.fragments.BlogFragment
+import devsec.app.rhinhorealestates.ui.main.fragments.EstateFragment
+import devsec.app.rhinhorealestates.ui.main.fragments.ProfileFragment
 import devsec.app.rhinhorealestates.utils.services.ConnectivityObserver
 import devsec.app.rhinhorealestates.utils.services.LoadingDialog
 import devsec.app.rhinhorealestates.utils.services.NetworkConnectivityObserver
@@ -44,7 +49,7 @@ class MainMenuActivity : AppCompatActivity() {
     private lateinit var connectivityObserver: ConnectivityObserver
 
     private lateinit var sideNav: Menu
-
+    private lateinit var imageV : ImageView
 
     private lateinit var session : SessionPref
     private lateinit var loadingDialog: LoadingDialog
@@ -53,7 +58,8 @@ class MainMenuActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        session = SessionPref(this.applicationContext)
+        val user: HashMap<String, String> = session.getUserPref()
         connectivityObserver = NetworkConnectivityObserver(applicationContext)
         connectivityObserver.observe().onEach {
             when (it) {
@@ -71,7 +77,33 @@ class MainMenuActivity : AppCompatActivity() {
         // Drawer
         drawerLayout = findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.nav_view)
+        val userId = user.get(SessionPref.USER_ID).toString()
 
+        val headerView = navigationView.getHeaderView(0)
+       imageV= headerView.findViewById<ImageView>(R.id.nav_header_image)
+
+        val retIn = RetrofitInstance.getRetrofitInstance().create(RestApiService::class.java)
+        val call = retIn.getimage(userId)
+        val baseUrl = "http://192.168.1.111:9090/img/"
+        call.enqueue(object : Callback<User> {
+            override fun onResponse(
+                call: Call<User>, response: Response<User>
+            ) {
+                if (response.isSuccessful) {
+                    val user = response.body()
+                    val imageUrl = baseUrl+ user?.image
+                    Picasso.get().load(imageUrl).into(imageV)
+                } else {
+
+                }
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+
+            }
+
+
+        })
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
@@ -167,11 +199,10 @@ class MainMenuActivity : AppCompatActivity() {
                     drawerLayout.closeDrawer(navigationView)
                     true
                 }
-
                 else -> false
             }
         }
-        session = SessionPref(this.applicationContext)
+
 
 
 
@@ -182,7 +213,6 @@ class MainMenuActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.estate -> replaceFragment(EstateFragment())
                 R.id.myEstates -> replaceFragment(BlogFragment())
-                R.id.calendar -> replaceFragment(CalendarFragment())
 
             }
             true

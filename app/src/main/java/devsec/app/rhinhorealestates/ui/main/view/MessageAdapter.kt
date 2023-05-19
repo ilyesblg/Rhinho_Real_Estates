@@ -46,6 +46,7 @@ class MessageAdapter(context: Context, messages: MutableList<MessageResponse>, p
             viewHolder.fromTextView.text = message.from
             if (message.from == username) {
                 viewHolder.messageContainer.gravity = Gravity.END
+                viewHolder.textTextView.gravity =Gravity.END
                 viewHolder.textTextView.setTextColor(
                     ContextCompat.getColor(
                         context,
@@ -55,10 +56,11 @@ class MessageAdapter(context: Context, messages: MutableList<MessageResponse>, p
             // Update textTextView instead of messageTextView
             } else {
                 viewHolder.messageContainer.gravity = Gravity.START
+
                 viewHolder.textTextView.setTextColor(
                     ContextCompat.getColor(
                         context,
-                        R.color.white
+                        R.color.black
                     )
                 ) // Update textTextView instead of messageTextView
             }

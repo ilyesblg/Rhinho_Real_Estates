@@ -198,7 +198,7 @@ class EstateDescActivity : AppCompatActivity() {
                     recipeName.text = food?.name
                     recipeCategory.text = food?.category
                     recipeInstructions.text = food?.username
-                    val BaseUrl = "http://192.168.1.13:9090/img/"
+                    val BaseUrl = "http://192.168.1.111:9090/img/"
                     val imageUrls = arrayOf(BaseUrl+food?.image,
                         BaseUrl+food?.image1, BaseUrl+food?.image2,
                         BaseUrl+food?.image3,

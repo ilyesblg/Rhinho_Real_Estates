@@ -44,6 +44,9 @@ interface RestApiService {
     @GET("users/{id}")
     fun getUser(@Path("id") id: String): Call<User>
 
+    @POST("{id}")
+    fun getUser1(@Path("id") id: String): Call<User>
+
     @Headers("Content-Type:application/json")
     @PATCH("users/{id}")
     fun updateUser(@Path("id") id: String, @Body user: User): Call<User>
@@ -134,12 +137,15 @@ interface RestApiService {
         @Query("to") to: String
     ): List<MessageResponse>
 
+    @POST("users/image/{id}")
+    fun getimage(@Path("id") id: String): Call<User>
+
 }
 
 class RetrofitInstance {
     companion object {
 
-        const val BASE_URL: String = "http://192.168.1.13:9090/api/"
+        const val BASE_URL: String = "http://192.168.1.111:9090/api/"
      // const val BASE_URL: String = "http://192.168.0.11:9090/api/"
 
 

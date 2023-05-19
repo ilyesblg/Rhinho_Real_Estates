@@ -25,7 +25,7 @@ import kotlin.collections.HashMap
 class ChatActivity : AppCompatActivity() {
 
     object RetrofitClient {
-        private const val BASE_URL = "http://192.168.1.13:9090"
+        private const val BASE_URL = "http://192.168.1.111:9090"
         private val retrofit: Retrofit by lazy {
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -68,7 +68,7 @@ class ChatActivity : AppCompatActivity() {
         // Establishing socket connection
         val options = IO.Options()
         options.forceNew = true
-        socket = IO.socket("192.168.1.13:9090", options)
+        socket = IO.socket("http://192.168.1.111:9090", options)
         socket.connect()
         socket.on(Socket.EVENT_CONNECT, onConnect)
         socket.on(Socket.EVENT_DISCONNECT, onDisconnect)

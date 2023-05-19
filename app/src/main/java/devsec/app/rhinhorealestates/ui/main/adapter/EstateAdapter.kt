@@ -46,7 +46,7 @@ class EstateAdapter(private var estateList: List<Estate>): RecyclerView.Adapter<
         holder.food_area.text = estate.area
 
         if (!estate.image.isNullOrEmpty()) {
-            Picasso.get().load("http://192.168.1.13:9090/img/"+estate.image).into(holder.food_image)
+            Picasso.get().load(estate.image).into(holder.food_image)
         } else {
             // Handle the case when the image URL or path is empty or null
             // For example, you can set a placeholder image or hide the ImageView

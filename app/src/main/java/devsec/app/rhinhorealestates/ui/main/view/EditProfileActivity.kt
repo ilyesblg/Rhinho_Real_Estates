@@ -83,7 +83,7 @@ class EditProfileActivity : AppCompatActivity() {
         addressEditText.setText(user[SessionPref.USER_ADDRESS])
         phoneEditText.setText(user[SessionPref.USER_PHONE])
         imageButton = findViewById(R.id.editProfileImageButton)
-        val imageUrl = "http://192.168.1.13:9090/img/"+user[SessionPref.USER_IMAGE] // Replace with the URL of the server image
+        val imageUrl = "http://192.168.1.111:9090/image/"+user[SessionPref.USER_IMAGE] // Replace with the URL of the server image
         Picasso.get().load(imageUrl).into(imageButton)
         val startForImageResult =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -127,7 +127,8 @@ class EditProfileActivity : AppCompatActivity() {
                 email = emailEditText.text.toString(),
                 password = passwordEditText.text.toString(),
                 address = addressEditText.text.toString(),
-                phone = phoneEditText.text.toString()
+                phone = phoneEditText.text.toString(),
+                image = ""
 
             )
 
@@ -191,7 +192,7 @@ class EditProfileActivity : AppCompatActivity() {
             .writeTimeout(10, TimeUnit.SECONDS)
             .build()
         apiService =
-            Retrofit.Builder().baseUrl("http://192.168.1.13:9090").client(client).build().create(
+            Retrofit.Builder().baseUrl("http://192.168.1.111:9090").client(client).build().create(
                 RestApiService::class.java
             )
     }
@@ -257,6 +258,7 @@ class EditProfileActivity : AppCompatActivity() {
                         multipartImageUpload(file)
                         Log.d("testing gg", "onActivityResult: ${file.name}")
                         imageButton.setImageURI(uri)
+
                     }
 
                     //mBitmap = BitmapFactory.decodeFile(imageUri)

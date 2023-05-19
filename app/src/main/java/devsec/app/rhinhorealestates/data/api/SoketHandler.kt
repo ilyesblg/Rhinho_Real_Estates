@@ -15,7 +15,7 @@ object SocketHandler {
 // If you want to use your physical phone you could use the your ip address plus :3000
 // This will allow your Android Emulator and physical device at your home to connect to the server
 
-            mSocket = IO.socket("http://192.168.1.13:9090")
+            mSocket = IO.socket("http://192.168.1.111:9090")
 
         } catch (e: URISyntaxException) {
 

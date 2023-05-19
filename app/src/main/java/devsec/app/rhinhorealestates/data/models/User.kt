@@ -6,8 +6,12 @@ data class User (
     val email: String,
     val password: String,
     val address: String,
-    val phone: String
+    val phone: String,
+    val image : String
+
 ) {
-    constructor(username: String, email: String, password: String, address: String, phone: String) : this("", username, email, password, address, phone)
+
+    constructor(username: String, email: String, password: String, address: String, phone: String , image: String ) : this("" , username, email , password,address,phone, image)
+
 }
 //    val  photo :  String
